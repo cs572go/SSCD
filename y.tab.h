@@ -1,0 +1,13 @@
+#define IF 257
+#define OP 258
+#define CP 259
+#define CMP 260
+#define OPR 261
+#define NUM 262
+#define ID 263
+#define ASG 264
+#define SC 265
+#define WHILE 266
+#define FOR 267
+#define INC 268
+#define INT 269

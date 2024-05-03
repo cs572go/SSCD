@@ -1,18 +1,36 @@
 %{
 #include "y.tab.h"
+extern int yyerror(char *str);
+extern int yywrap();
+extern int yyparse();
 %}
 
 %%
-"if"            { return SIF; }
-"while"         { return SW; }
-"("             { return OB; }
-")"             { return CB; }
-";"             { return SC; }
-"=="|"<"|">"|"<="|">=" { return CMP; }
-"="             { return ASG; }
-"+"|"-"|"*"|"/" { return OP; }
-[a-zA-Z]*       { return ID; }
-[0-9]+          { return NUM; }
-[ \t\n]         ; /* Skip whitespace */
-.               { return yytext[0]; }
+"while" return WHILE;
+"for" return FOR;
+"int" return INT;
+"++" return INC;
+"if" return IF;
+"(" return OP;
+")" return CP;
+"<" |
+">" |
+"<=" |
+">=" |
+"==" |
+"!=" return CMP;
+"+" |
+"-" |
+"*" |
+"/" return OPR;
+([a-zA-Z])("_"|[a-zA-Z0-9])* return ID;
+[0-9]+ return NUM;
+";" return SC;
+"=" return ASG;
+" " {}
+
 %%
+
+int yywrap(){
+    return 0;
+}
